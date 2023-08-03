@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="lib/ag-grid-community.min.js"></script>
+    <script type="text/javascript" src="lib/chart.min.js"></script>
+    <script type="text/javascript" src="dashboard.js"></script>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+</head>
+
+<body>
+    <div id="topbar">
+        <div id="toggle-menu-hitbox">
+            <img src="icons/bars-solid.svg" id="toggle-menu-icon">
+        </div>
+        <div id="toggle-chart-hitbox">
+            <img src="icons/angle-down-solid.svg" id="toggle-chart-icon" class="rotated">
+        </div>
+    </div>
+    <div id="chart-wrapper">
+        <canvas id="display"><p>The browser does not support the canvas element.</p></canvas>
+    </div>
+    <div id="bottom-wrapper">
+        <div id="button-wrapper">
+            <button id="button-exclude-failures" class="button">Exclude failures</button>
+            <button id="button-exclude-api" class="button">Exclude API calls</button>
+            <button id="button-exclude-assets" class="button">Exclude assets</button>
+            <button id="button-exclude-spam" class="button">Exclude spam</button>
+            <button id="button-toggle-params" class="button">Toggle params</button>
+        </div>
+        <div id="log-entries" class="ag-theme-alpine-dark"></div>
+    </div>
+</body>
+</html>
