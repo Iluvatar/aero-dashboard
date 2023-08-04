@@ -583,7 +583,7 @@ function massageRow(row) {
     const timestampFormat = IS_BIG ? "%Y-%m-%d %H:%M:%S" : "%a %H:%M:%S";
 
     row.timestamp = strftime(new Date(row.timestamp), timestampFormat);
-    row.os = IS_BIG ? row.os : { "Mac": "Mac", "Windows": "Win", "iPhone": "iOS", "Android": "And", "Linux": "*nix", "Spider": "Spdr","-": "-" }[row.os];
+    row.os = IS_BIG ? row.os : { "Mac": "Mac", "Windows": "Win", "iPhone": "iOS", "Android": "And", "Linux": "*nix", "Spider": "Spdr", "-": "-" }[row.os];
     row.httpMethod = IS_BIG ? row.httpMethod : row.httpMethod.substring(0, 4);
     row.tls = IS_BIG ? row.tls : row.tls.replace("TLSv", "");
     row.host = IS_BIG ? row.host : row.host.replace("aeromancer", "aero");
@@ -634,11 +634,11 @@ function getRowClassRule(key) {
     const ruleMap = new Map();
     ruleMap.set("self",    (data) => data.ip === "24.130.65.132");
     ruleMap.set("sketchy", (data) => data.os === "" || data.status === 444 || data.status === 404);
-    ruleMap.set("info",    (data) => data.httpMethod === "HEAD" || data.httpMethod === "OPTIONS");
+    ruleMap.set("info",    (data) => ["HEAD", "OPTIONS", "OPTI"].includes(data.httpMethod));
     ruleMap.set("api",     (data) => data.host.startsWith("api."));
     ruleMap.set("robots",  (data) => data.path === "/robots.txt");
     ruleMap.set("tls",     (data) => data.tls === "");
-    ruleMap.set("spider",  (data) => data.os === "Spider");
+    ruleMap.set("spider",  (data) => ["Spider", "Spdr"].includes(data.os));
 
     return (params) => {
         if (params.data === undefined) {
